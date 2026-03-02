@@ -248,6 +248,7 @@ jobs:
           args: corepack pnpm run test:bindings
   publish:
     name: Publish
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -267,6 +268,7 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 24
+          registry-url: https://registry.npmjs.org
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
       - name: Install dependencies

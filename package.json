@@ -53,7 +53,7 @@
     "prepublishOnly": "napi prepublish -t npm",
     "test": "pnpm run test:local",
     "test:local": "pnpm typecheck && pnpm build:debug && ava",
-    "test:bindings": "pnpm typecheck && ava",
+    "test:bindings": "npm run typecheck && ava",
     "typecheck": "tsc -p __test__/tsconfig.json --noEmit",
     "preversion": "napi build --platform --no-js --dts native.d.ts && git add .",
     "version": "napi version",

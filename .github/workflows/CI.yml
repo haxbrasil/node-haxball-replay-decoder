@@ -42,7 +42,7 @@ jobs:
         with:
           components: clippy, rustfmt
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
       - name: Oxlint
         run: pnpm lint
       - name: Cargo fmt
@@ -116,7 +116,7 @@ jobs:
         if: ${{ matrix.settings.setup }}
         shell: bash
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
       - name: Build
         run: ${{ matrix.settings.build }}
         shell: bash
@@ -164,7 +164,7 @@ jobs:
           cache-dependency-path: pnpm-lock.yaml
           architecture: ${{ matrix.settings.architecture }}
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
       - name: Download artifacts
         uses: actions/download-artifact@v8
         with:
@@ -222,7 +222,7 @@ jobs:
             }
           " >> $GITHUB_OUTPUT
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
       - name: Download artifacts
         uses: actions/download-artifact@v8
         with:
@@ -269,7 +269,7 @@ jobs:
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
       - name: create npm dirs
         run: pnpm napi create-npm-dirs
       - name: Download all artifacts

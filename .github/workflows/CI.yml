@@ -283,12 +283,23 @@ jobs:
         shell: bash
       - name: Publish
         run: |
-          if git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$";
-          then
-            npm publish --provenance --access public
-          elif git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+";
-          then
-            npm publish --provenance --tag next --access public
+          publish_args=(--provenance --access public)
+          if git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$"; then
+            echo "Stable release publish"
+          elif git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+"; then
+            echo "Pre-release publish (next tag)"
+            publish_args+=(--tag next)
           else
             echo "Not a release, skipping publish"
+            exit 0
           fi
+
+          for pkg_dir in npm/*; do
+            if [ -d "$pkg_dir" ]; then
+              echo "Publishing optional package: $pkg_dir"
+              (cd "$pkg_dir" && npm publish "${publish_args[@]}")
+            fi
+          done
+
+          echo "Publishing root package"
+          npm publish "${publish_args[@]}"

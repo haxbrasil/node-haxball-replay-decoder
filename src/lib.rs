@@ -64,6 +64,7 @@ enum DecodeErrorDetails {
 
 #[derive(Debug, Serialize)]
 #[serde(untagged)]
+#[allow(clippy::large_enum_variant)]
 enum DecodeTryResult {
   Ok { ok: bool, data: ReplayData },
   Err { ok: bool, error: DecodeFailure },

@@ -104,5 +104,12 @@
     "singleQuote": true,
     "arrowParens": "always"
   },
-  "packageManager": "pnpm@10.13.1"
+  "packageManager": "pnpm@10.13.1",
+  "optionalDependencies": {
+    "@hax-brasil/replay-decoder-win32-x64-msvc": "1.0.0",
+    "@hax-brasil/replay-decoder-darwin-x64": "1.0.0",
+    "@hax-brasil/replay-decoder-linux-x64-gnu": "1.0.0",
+    "@hax-brasil/replay-decoder-linux-arm64-gnu": "1.0.0",
+    "@hax-brasil/replay-decoder-darwin-arm64": "1.0.0"
+  }
 }
